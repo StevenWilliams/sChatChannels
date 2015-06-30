@@ -1,0 +1,41 @@
+#Variables: {CHANNEL}, {USERNAME}, {DISPLAYNAME}, {MESSAGE}
+#To use the channel, use the name (defaults: staffchat, adminchat, helpme) or an alias as the command
+#
+#Example (staffchat)
+#/staffchat Hello (sends a message to those who have receive access)
+#/staffchat (toggles chat to automatically use staffchat - no need to type the command to chat). Type it again to toggle off.
+#
+#Permissions:
+#Send: channels.channel.{channelname}.send (Example: channels.channel.staffchat.send)
+#Receive: channels.channel.{channelname}.receive (Example: channels.channel.staffchat.receive)
+#
+#To add more channels/commands, copy/paste one of the existing channels and edit as neccessary.
+#
+#TIP: You can give players send only access to helpme channel, and give staff receive access, so players can privately message staff.
+#
+
+
+no-access: "&cYou do not have permission to access this channel!"
+no-msg: "&cPlease include a message!"
+msg-sent: "&cMessage sent to {CHANNEL}!" #confirmation if player doesnt have receive access
+toggled-on: "&bToggled {CHANNEL} &2on."
+toggled-off: "&bToggled {CHANNEL} &coff."
+none-online: "&cNo one with access to this channel is online!"
+
+permanent-channels:
+    staffchat: #use /staffchat (or an alias) to access
+        display-name: "StaffChat"
+        format: "&8[&cStaff&8]: &7<{DISPLAYNAME}&7> &e{MESSAGE}"
+        aliases:
+            - sc
+            - schat
+    adminchat:
+        display-name: "Staff"
+        format: "&8[&cAdmin&8]: &7<{DISPLAYNAME}&7> &e{MESSAGE}"
+        aliases:
+            - ac
+            - achat
+    helpme:
+        display-name: "HelpMe"
+        format: "&e{USERNAME}&e needs help:&7 {MESSAGE}"
+        toggleable: false
