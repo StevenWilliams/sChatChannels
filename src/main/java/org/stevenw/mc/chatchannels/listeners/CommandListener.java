@@ -38,10 +38,7 @@ public class CommandListener implements Listener {
                         }
                     }
                 } else {
-                    if(channel.sendMessage(event.getPlayer(), typedSplit[1]) == 0)
-                    {
-                        player.sendMessage(plugin.messageFormatter(channel, player, "", plugin.getConfig().getString("none-online")));
-                    }
+                    channel.sendMessage(event.getPlayer(), typedSplit[1]);
                 }
             }
             event.setCancelled(true);

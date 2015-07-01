@@ -51,7 +51,7 @@ public class PermanentChannel extends Channel{
 
     @Override
     public int sendMessage(Player sender, String message) {
-        Integer players = 0;
+        int players = 0;
         String formattedMessage = plugin.messageFormatter(this, sender, message, getMessageFormat());
         for (Player player : plugin.getServer().getOnlinePlayers()) {
             if (player.hasPermission(this.getReceivePermission())) {
@@ -59,9 +59,13 @@ public class PermanentChannel extends Channel{
                 player.sendMessage(formattedMessage);
             }
         }
-        if(!sender.hasPermission(this.getReceivePermission()))
+        if(players == 0)
         {
-            sender.sendMessage(plugin.messageFormatter(this, sender, message, plugin.getConfig().getString("msg-sent")));
+            sender.sendMessage(plugin.messageFormatter(this, sender, message, plugin.getConfig().getString("none-online")));
+        } else {
+            if (!sender.hasPermission(this.getReceivePermission())) {
+                sender.sendMessage(plugin.messageFormatter(this, sender, message, plugin.getConfig().getString("msg-sent")));
+            }
         }
         return players;
     }
