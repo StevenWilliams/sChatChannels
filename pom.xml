@@ -38,13 +38,6 @@
             <artifactId>spigot-api</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>us.crast</groupId>
-            <artifactId>MondoCommand</artifactId>
-            <version>0.3</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <repositories>
