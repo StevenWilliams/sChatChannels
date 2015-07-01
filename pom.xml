@@ -12,35 +12,6 @@
         <defaultGoal>package install</defaultGoal>
         <finalName>${project.name}</finalName>
         <plugins>
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>us.crast:MondoCommand</include>
-                        </includes>
-                    </artifactSet>
-                    <finalName>uber-${project.name}-${version}</finalName>
-                    <relocations>
-                        <relocation>
-                            <pattern>mondocommand</pattern>
-                            <shadedPattern>org.stevenw.mc.mondocommand</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-
-            </plugin>
-              -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -58,11 +29,6 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
-            <!--
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-            -->
         </resources>
     </build>
 
@@ -85,11 +51,6 @@
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-
-        <repository>
-            <id>crast-repo</id>
-            <url>http://maven.crast.us</url>
         </repository>
     </repositories>
 </project>
