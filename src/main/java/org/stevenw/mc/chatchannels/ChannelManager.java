@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public class ChannelManager {
-    private sChatChannels plugin;
-    private ArrayList<Channel> channels = new ArrayList<>();
-    private HashMap<UUID, String> toggledChannel = new HashMap<>();
+    private final sChatChannels plugin;
+    private final ArrayList<Channel> channels = new ArrayList<>();
+    private final HashMap<UUID, String> toggledChannel = new HashMap<>();
     public ChannelManager(sChatChannels plugin)
     {
         this.plugin = plugin;

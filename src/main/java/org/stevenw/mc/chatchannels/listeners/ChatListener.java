@@ -8,7 +8,7 @@ import org.stevenw.mc.chatchannels.Channel;
 import org.stevenw.mc.chatchannels.sChatChannels;
 
 public class ChatListener implements Listener {
-    private sChatChannels plugin;
+    private final sChatChannels plugin;
     public ChatListener(sChatChannels plugin)
     {
      this.plugin = plugin;

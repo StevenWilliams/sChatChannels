@@ -23,15 +23,16 @@ public class sChatChannels extends JavaPlugin {
     public ChannelManager getChannelManager() {
         return channelManager;
     }
-    public String messageFormatter(Channel channel, Player player, String message, String chatformat) {
+
+    public String messageFormatter(Channel channel, Player player, String message, String chatFormat) {
         //Replace with ChatReplacer object, and ChatReplacer manager
-        chatformat = ChatColor.translateAlternateColorCodes('&', chatformat);
-        chatformat = chatformat.replace("{DISPLAYNAME}", player.getDisplayName());
-        chatformat = chatformat.replace("{MESSAGE}", message);
-        chatformat = chatformat.replace("{CHANNEL}", channel.getDisplayName());
-        chatformat = chatformat.replace("{USERNAME}", player.getName());
-        chatformat = ChatColor.translateAlternateColorCodes('&', chatformat);
-        return chatformat;
+        chatFormat = ChatColor.translateAlternateColorCodes('&', chatFormat);
+        chatFormat = chatFormat.replace("{DISPLAYNAME}", player.getDisplayName());
+        chatFormat = chatFormat.replace("{MESSAGE}", message);
+        chatFormat = chatFormat.replace("{CHANNEL}", channel.getDisplayName());
+        chatFormat = chatFormat.replace("{USERNAME}", player.getName());
+        chatFormat = ChatColor.translateAlternateColorCodes('&', chatFormat);
+        return chatFormat;
 
     }
 }

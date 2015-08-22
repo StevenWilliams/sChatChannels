@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class PermanentChannel extends Channel{
-    private String name;
-    private sChatChannels plugin;
-    private ConfigurationSection channelConfig;
+    private final String name;
+    private final sChatChannels plugin;
+    private final ConfigurationSection channelConfig;
 
     public PermanentChannel(sChatChannels plugin, String name) {
         this.name = name;
@@ -72,10 +72,6 @@ public class PermanentChannel extends Channel{
 
     @Override
     public boolean toggleable() {
-        if(this.channelConfig.isSet("toggleable"))
-        {
-            return this.channelConfig.getBoolean("toggleable");
-        }
-        return true;
+        return !this.channelConfig.isSet("toggleable") || this.channelConfig.getBoolean("toggleable");
     }
 }
