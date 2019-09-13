@@ -13,7 +13,13 @@
 #
 #TIP: You can give players send only access to helpme channel, and give staff receive access, so players can privately message staff.
 #
+use-redis: true
+redis-host: "127.0.0.1"
+redis-auth: true
+redis-password: "redis"
+redis-port: 6379
 
+server: "prison"
 
 no-access: "&cYou do not have permission to access this channel!"
 no-msg: "&cPlease include a message!"
@@ -35,6 +41,7 @@ permanent-channels:
         aliases:
             - ac
             - achat
+        global: true
     helpme:
         display-name: "HelpMe"
         format: "&e{USERNAME}&e needs help:&7 {MESSAGE}"

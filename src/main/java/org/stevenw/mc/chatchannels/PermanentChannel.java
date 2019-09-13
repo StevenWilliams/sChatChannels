@@ -1,5 +1,6 @@
 package org.stevenw.mc.chatchannels;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
@@ -51,14 +52,18 @@ public class PermanentChannel extends Channel{
 
     @Override
     public int sendMessage(Player sender, String message) {
-        int players = 0;
+
         String formattedMessage = plugin.messageFormatter(this, sender, message, getMessageFormat());
-        for (Player player : plugin.getServer().getOnlinePlayers()) {
-            if (player.hasPermission(this.getReceivePermission())) {
-                if(!player.equals(sender)) players = players + 1;
-                player.sendMessage(formattedMessage);
-            }
+        Message message1 = new Message(plugin.getServerName(), this.getReceivePermission(), formattedMessage, this.name, sender);
+        MessageEvent event = (new MessageEvent(message1));
+        if(plugin.getRedisManager() != null &&channelConfig.getBoolean("global", false)) {
+            RedisManager redis = plugin.getRedisManager();
+            redis.publish("chatchannels", redis.toJson(message1));
+        } else {
+            //needs to be called only if not using redis since redis subscribe will already call it
+            Bukkit.getPluginManager().callEvent(event);
         }
+        int players = event.getReceivedByCount();
         if(players == 0)
         {
             sender.sendMessage(plugin.messageFormatter(this, sender, message, plugin.getConfig().getString("none-online")));
@@ -68,6 +73,10 @@ public class PermanentChannel extends Channel{
             }
         }
         return players;
+    }
+
+    public boolean global() {
+        return this.channelConfig.getBoolean("toggleable");
     }
 
     @Override

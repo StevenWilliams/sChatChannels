@@ -5,9 +5,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.stevenw.mc.chatchannels.listeners.ChatListener;
 import org.stevenw.mc.chatchannels.listeners.CommandListener;
+import org.stevenw.mc.chatchannels.listeners.MessageListener;
 
 public class sChatChannels extends JavaPlugin {
     private ChannelManager channelManager;
+    private RedisManager redisManager =null;
+
+    public static sChatChannels getPlugin() {
+        return plugin;
+    }
+
+    public static sChatChannels plugin;
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
@@ -15,10 +23,20 @@ public class sChatChannels extends JavaPlugin {
         channelManager.loadPermChannels();
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+        getServer().getPluginManager().registerEvents(new MessageListener(this), this);
+        plugin = this;
+        if(this.getConfig().getBoolean("use-redis", false)) {
+            this.redisManager  = RedisManager.getInstance();
+            redisManager.subscribe();
+        }
     }
+
     @Override
     public void onDisable() {
-
+        plugin=null;
+    }
+    public String getServerName(){
+        return this.getConfig().getString("server");
     }
     public ChannelManager getChannelManager() {
         return channelManager;
@@ -34,5 +52,9 @@ public class sChatChannels extends JavaPlugin {
         chatFormat = ChatColor.translateAlternateColorCodes('&', chatFormat);
         return chatFormat;
 
+    }
+
+    public RedisManager getRedisManager() {
+        return redisManager;
     }
 }
